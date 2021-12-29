@@ -81,6 +81,11 @@ namespace IuserInfo.Controllers
                 errors.Add("Not a valid Email");
                 return BadRequest(errors);
             }
+
+            if (string.IsNullOrWhiteSpace(request.IuserPassword)){
+                errors.Add("Please Enter Password");
+                return BadRequest(errors);
+            }
             var accounts = from a in _context.Info
                            select a;
 
@@ -108,37 +113,37 @@ namespace IuserInfo.Controllers
             List<string> errors = new List<string>();
             if (string.IsNullOrWhiteSpace(request.IuserAccount))
             {
-                errors.Add("Email is required ");
+                errors.Add("Please Enter Email");
+                return BadRequest(errors);
             }
 
             if (string.IsNullOrWhiteSpace(request.IuserPassword))
             {
-                errors.Add("Password is required ");
+                errors.Add("Please Enter Password");
+                return BadRequest(errors);
             }
 
-            if(errors.Count > 0)
+            var accounts = from a in _context.Info
+                            select a;
+            var passwords = from p in _context.Info
+                            where p.IuserAccount== request.IuserAccount
+                            select p;
+            accounts = accounts.Where(s => s.IuserAccount.Contains(request.IuserAccount));
+            passwords = passwords.Where(p => p.IuserPassword.Contains(request.IuserPassword));
+            if (accounts.Any() && passwords.Any())
             {
+                return Ok("Login Successfully");
+            }
+            else if(accounts.Any() && !passwords.Any())
+            {
+                errors.Add("Password Is Incorrect");
                 return BadRequest(errors);
             }
             else
             {
-                var accounts = from a in _context.Info
-                               select a;
-                var passwords = from p in _context.Info
-                               select p;
-                accounts = accounts.Where(s => s.IuserAccount.Contains(request.IuserAccount));
-                passwords = passwords.Where(p => p.IuserPassword.Contains(request.IuserPassword));
-                if (accounts.Any() && passwords.Any())
-                {
-                    return Ok("Login Successfully");
-                }
-                else
-                {
-                    errors.Add("Not Found Email Or Password Is Incorrect");
-                    return BadRequest(errors);
-                }
+                errors.Add("Not Found Email");
+                return BadRequest(errors);
             }
-
         }
 
         // DELETE: api/Infoes/5
