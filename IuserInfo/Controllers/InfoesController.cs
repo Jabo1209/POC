@@ -123,16 +123,14 @@ namespace IuserInfo.Controllers
             else
             {
                 var accounts = from a in _context.Info
-                               where a.IuserAccount == request.IuserAccount
                                select a;
                 var passwords = from p in _context.Info
-                               where p.IuserPassword == request.IuserPassword
                                select p;
                 accounts = accounts.Where(s => s.IuserAccount.Contains(request.IuserAccount));
                 passwords = passwords.Where(p => p.IuserPassword.Contains(request.IuserPassword));
                 if (accounts.Any() && passwords.Any())
                 {
-                    return Ok(accounts);
+                    return Ok("Login Successfully");
                 }
                 else
                 {
