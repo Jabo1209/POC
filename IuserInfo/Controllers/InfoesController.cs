@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using IuserInfo.Data;
 using IuserInfo.Models;
-using IuserInfo.Pages.Infos;
 using IuserInfo.Commons;
 
 namespace IuserInfo.Controllers
@@ -83,7 +82,6 @@ namespace IuserInfo.Controllers
                 return BadRequest(errors);
             }
             var accounts = from a in _context.Info
-                           where a.IuserAccount == request.IuserAccount
                            select a;
 
             accounts = accounts.Where(s => s.IuserAccount.Contains(request.IuserAccount));
