@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IuserInfo", "IuserInfo\IuserInfo.csproj", "{517E2248-0539-40C2-8DE8-53341463F76E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RESTful", "RESTful\RESTful.csproj", "{517E2248-0539-40C2-8DE8-53341463F76E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

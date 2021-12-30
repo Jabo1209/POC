@@ -1,10 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using IuserInfo.Data;
+using RESTful.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
 builder.Services.AddControllers();
 builder.Services.AddDbContext<IuserInfoContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("IuserInfoContext")));
@@ -29,8 +27,6 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
-app.MapRazorPages();
 
 app.MapControllers();
 

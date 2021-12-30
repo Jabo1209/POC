@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using IuserInfo.Models;
+using RESTful.Models;
 
-namespace IuserInfo.Data
+namespace RESTful.Data
 {
     public class IuserInfoContext : DbContext
     {
@@ -15,6 +15,6 @@ namespace IuserInfo.Data
         {
         }
 
-        public DbSet<IuserInfo.Models.Info> Info { get; set; }
+        public DbSet<RESTful.Models.UserInfo> UserInfo { get; set; }
     }
 }
